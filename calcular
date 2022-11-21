@@ -1,0 +1,63 @@
+#programa para calcular el presentil de un niño
+from cProfile import label
+from cgitb import text
+from tkinter import *
+
+from niño import niño
+
+
+#inicio del front 
+raiz=Tk()
+raiz.title="calculadora de IMC"
+
+miframe=Frame(height=600, width=600)
+
+#titulo, que debe decir que es una calculadore de presentil
+titulo=Label(text="calculadora de IMC").grid(row=0,column=2)
+
+#label y entry que den a etender que se trata de la edad
+edad_label=Label(raiz,text="edad: ").grid(row=1, column=1)
+edad_var=StringVar()
+edad_entry=Entry(textvariable=edad_var).grid(row=1, column=2)
+#label y entry del peso
+peso_label=Label(raiz,text="peso: ").grid(row=2, column=1)
+peso_var=StringVar()
+peso_entry=Entry(textvariable=peso_var).grid(row=2, column=2)
+#label y entry de la talla
+talla_label=Label(raiz,text="talla: ").grid(row=3, column=1)
+talla_var=StringVar()
+talla_entry=Entry(textvariable=talla_var).grid(row=3, column=2)
+
+def IMC():
+    """llama al objeto niño que se encarga de guardar la edad, peso, talla y sexo del niño"""
+    int(edad_var.get())
+    float(peso_var.get())
+    float(talla_var.get())
+    datos=niño(edad_var.get(), peso_var.get(), talla_var.get(), sexo_var)
+    """calcula el indice y lo coloca en el label"""
+    datos.calcular()
+    imc.config(text=datos.calcular(), fg=datos.color)
+
+#radio botons, para el sexo
+miframe
+sexo_label=Label(raiz,text="sexo: ").grid(row=4, column=1)
+sexo_var=False
+mujer=IntVar()
+hombre=IntVar()
+Radiobutton(text="M", value=1, variable=hombre).grid(row=4, column=2)
+Radiobutton(text="F", value=2, variable=mujer).grid(row=4, column=3)
+imc=Label(raiz,text="")
+imc.grid(row=5, column=2)
+Boton_calcular=Button(text="calcular", command=IMC).grid(row=6, column=2)
+#final del front
+
+#verifica si es mujer u hombre
+if mujer.get()==2:
+    sexo_var=False
+elif hombre.get()==1:
+    sexo_var=True
+
+
+
+
+raiz.mainloop()
