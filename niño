@@ -1,0 +1,26 @@
+class niño():
+    def __init__(seLf, edad, peso, talla, sexo):
+        seLf.edad=(edad)
+        seLf.peso=float(peso)
+        seLf.talla=float(talla)
+        seLf.sexo=sexo
+        
+    
+    def calcular(seLf):
+        seLf.imc=round(seLf.peso/seLf.talla**2, 2)
+        seLf.estado=""
+        seLf.color=""
+        if seLf.imc<18.5:
+            seLf.estado="peso bajo"
+            #seLf.color="yellow"
+        elif seLf.imc>=18.5 and seLf.imc < 25:
+            seLf.estado="peso normal"
+            #seLf.color="green"
+        elif seLf.imc>=25 < 30:
+            seLf.estado="sobre peso"
+            #seLf.color="red"
+        elif seLf.imc >= 30:
+            seLf.estado="obeisidad"
+            #seLf.color="red"
+        seLf.resultado= str(seLf.imc) + "\n" + seLf.estado
+        return seLf.resultado
